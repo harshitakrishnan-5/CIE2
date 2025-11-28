@@ -1,26 +1,33 @@
+# speed.py
+# Program to calculate Speed
+import sys
+
 def calculate_speed(distance, time):
-    """
-    Calculate speed given distance and time.
-    Args:
-        distance (float): Distance traveled in kilometers.
-        time (float): Time taken in hours.
+    """Calculate speed given distance and time."""
+    return distance / time
 
-    Returns:
-        float: Speed in kilometers per hour.
-    """
-    if time <= 0:
-        raise ValueError("Time must be greater than zero.")
-    speed = distance / time
-    return speed
-
-def main():
-    distance = float(input("Enter distance traveled (in km): "))
-    time = float(input("Enter time taken (in hours): "))
-    try:
-        speed = calculate_speed(distance, time)
-        print(f"Speed: {speed:.2f} km/h")
-    except ValueError as e:
-        print(e)
 
 if __name__ == "__main__":
-    main()
+    print("=== Speed Calculator ===")
+
+    try:
+        # Case 1: When arguments are passed through CLI (Jenkins or terminal)
+        if len(sys.argv) == 3:
+            d = float(sys.argv[1])     # distance
+            t = float(sys.argv[2])     # time
+        else:
+            # Case 2: User input from console
+            d = float(input("Enter the distance travelled (in km): "))
+            t = float(input("Enter the time taken (in hours): "))
+
+        print("\n=== Program parameters ===")
+        print("Distance: ", d)
+        print("Time: ", t)
+
+        speed = calculate_speed(d, t)
+        print(f"\nSpeed = {speed:.2f} km/h")
+
+    except ValueError:
+        print("Invalid input! Please enter numeric values only.")
+    except ZeroDivisionError:
+        print("Time cannot be zero!")
