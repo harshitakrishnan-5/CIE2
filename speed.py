@@ -1,5 +1,4 @@
 # speed.py
-# Program to calculate Speed
 import sys
 
 def calculate_speed(distance, time):
@@ -11,18 +10,21 @@ if __name__ == "__main__":
     print("=== Speed Calculator ===")
 
     try:
-        # Case 1: When arguments are passed through CLI (Jenkins or terminal)
+        # Case 1: CLI arguments (Jenkins)
         if len(sys.argv) == 3:
-            d = float(sys.argv[1])     # distance
-            t = float(sys.argv[2])     # time
+            d = float(sys.argv[1])
+            t = float(sys.argv[2])
         else:
-            # Case 2: User input from console
+            # Case 2: Manual input
             d = float(input("Enter the distance travelled (in km): "))
             t = float(input("Enter the time taken (in hours): "))
 
         print("\n=== Program parameters ===")
-        print("Distance: ", d)
-        print("Time: ", t)
+        print("Distance:", d)
+        print("Time:", t)
+
+        if t == 0:
+            raise ZeroDivisionError
 
         speed = calculate_speed(d, t)
         print(f"\nSpeed = {speed:.2f} km/h")
